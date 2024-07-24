@@ -1,0 +1,63 @@
+@baseUrl = http://localhost:5110/api
+
+### Lấy tất cả sản phẩm
+GET {{baseUrl}}/products
+
+### Lấy sản phẩm theo trang và số lượng sản phẩm trên trang
+
+GET {{baseUrl}}/products?pageNumber=2
+
+### Lấy sản phẩm theo trang và số lượng sản phẩm trên trang với Filter
+
+GET {{baseUrl}}/products?sortField=Name&nameFilter=A
+
+
+### Lấy sản phẩm theo ID
+GET {{baseUrl}}/products/1027
+
+### Lấy danh sách cửa hàng bán sản phẩm có ID là 3054
+GET {{baseUrl}}/products/3054/stores
+
+### Lấy danh sách cửa hàng sản phẩm nằm trong cửa hàng có ID=1
+GET {{baseUrl}}/products/stores/1
+
+### Tạo sản phẩm mới
+POST {{baseUrl}}/products
+Content-Type: application/json
+
+{
+  "name": "New Produ4ctsss",
+  "provider": "15.99",
+  "Price":100,
+  "StoreIds":[  1, 2, 3]
+}
+
+### Up file lên
+POST {{baseUrl}}/products/upload
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="example.txt"
+Content-Type: text/plain
+
+ProductId,Name,Price,Provider,StoreIds
+1020,Product1,10.00,Provider1,[1,2,3]
+
+--WebAppBoundary--
+
+
+
+### Cập nhật sản phẩm
+PUT {{baseUrl}}/products/1027
+Content-Type: application/json
+
+{
+  "ProductId": 1027,
+  "name": "99",
+  "provider": "haaa",
+  "Price":0.02,
+  "StoreIds":[  1, 2, 3]
+}
+
+### Xóa sản phẩm
+DELETE {{baseUrl}}/products/1009
